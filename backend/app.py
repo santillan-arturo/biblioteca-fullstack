@@ -1,18 +1,20 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-import mysql.connector
-from mysql.connector import Error
+from flask import Flask, jsonify
+from flask_cors import CORS  # <-- Controlla che ci sia questa riga!
+
+app = Flask(__name__)
+CORS(app)  # <-- Questo sblocca definitivamente il box rosso!
+
 
 app = Flask(__name__)
 CORS(app)  # Consente ad Angular di connettersi a Flask senza blocchi di sicurezza
 
-# CHIEDI QUESTI DATI AL TUO SOCIO TURO
 DB_CONFIG = {
-    'host': 'IL_TUO_HOST_AIVEN',
-    'user': 'IL_TUO_USER_AIVEN',
-    'password': 'LA_TUA_PASSWORD_AIVEN',
-    'port': 12345,  # Numero di porta intero
-    'database': 'defaultdb'
+    'user': 'avnadmin',
+    'password': 'AVNS_4Q-f-Sq82ujmeaJFtWO',
+    'host': 'mysql-2b5b836d-iisgalvanimi-7e99.g.aivencloud.com',
+    'port': 27391,
+    'database': 'defaultdb',
+    'ssl_ca': 'ca.pem'
 }
 
 def get_db_connection():

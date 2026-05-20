@@ -1,31 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { DataService } from '../../services/data.service';
+import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http'; // <-- Aggiunto HttpClientModule
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-categorie',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './categorie.html',
-  styleUrl: './categorie.css'
+  imports: [CommonModule, RouterModule, HttpClientModule], // <-- Inserito anche qui negli imports
+  templateUrl: './categorie.html'
 })
 export class Categorie implements OnInit {
-  categorieList: any[] = [];
-  loading = true;
-  errorMessage = '';
+  categorie: any[] = [];
+  loading: boolean = true;
+  errore: string = '';
 
-  constructor(private dataService: DataService) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.dataService.getCategorie().subscribe({
+    this.caricaCategorie();
+  }
+
+  caricaCategorie(): void {
+    this.loading = true;
+    this.errore = '';
+    
+    this.http.get<any[]>(`${environment.apiUrl}/api/categorie`).subscribe({
       next: (data) => {
-        this.categorieList = data;
+        this.categorie = data;
         this.loading = false;
       },
       error: (err) => {
-        console.error(err);
-        this.errorMessage = 'Errore nel caricamento delle categorie. Verifica che il backend sia attivo!';
+        console.error('Errore dettagliato:', err);
+        this.errore = 'Errore nel caricamento delle categorie. Verifica la connessione a Flask!';
         this.loading = false;
       }
     });

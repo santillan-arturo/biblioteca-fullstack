@@ -1,1 +1,46 @@
-<p>libri-lista works!</p>
+<div>
+  <div style="margin-bottom: 20px;">
+    <a routerLink="/" style="color: #007bff; text-decoration: none;">&larr; Torna alle Categorie</a>
+  </div>
+
+  <h2>Elenco Libri</h2>
+
+  <div style="margin-bottom: 20px;">
+    <input type="text" 
+           [(ngModel)]="searchQuery" 
+           (input)="onSearchChange()" 
+           placeholder="🔍 Cerca un libro per titolo..." 
+           style="padding: 10px; width: 100%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+  </div>
+
+  <div *ngIf="loading" style="color: #666; font-style: italic;">
+    Caricamento libri in corso...
+  </div>
+
+  <div *ngIf="!loading && libriList.length === 0" style="padding: 20px; background-color: #fafafa; border: 1px solid #e1e4e6; text-align: center; color: #666;">
+    Nessun libro trovato per questa categoria o ricerca.
+  </div>
+
+  <table *ngIf="!loading && libriList.length > 0" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <thead>
+      <tr style="background-color: #f6f8fa; border-bottom: 2px solid #d0d7de; text-align: left;">
+        <th style="padding: 12px;">Titolo</th>
+        <th style="padding: 12px;">Autore</th>
+        <th style="padding: 12px;">Anno</th>
+        <th style="padding: 12px;">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libriList" style="border-bottom: 1px solid #d0d7de;">
+        <td style="padding: 12px; font-weight: bold;">{{ libro.titolo }}</td>
+        <td style="padding: 12px;">{{ libro.autore }}</td>
+        <td style="padding: 12px;">{{ libro.anno_pubblicazione }}</td>
+        <td style="padding: 12px;">
+          <button [routerLink]="['/libro', libro.id]" style="padding: 6px 12px; background-color: #2ea44f; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+            Vedi Dettaglio
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

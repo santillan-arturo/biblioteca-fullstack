@@ -1,8 +1,12 @@
-<div style="padding: 20px; font-family: sans-serif;">
-  <header style="border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">
-    <h1>📚 Sistema Gestionale Biblioteca Cloud</h1>
-    <a routerLink="/" style="text-decoration: none; color: #007bff; font-weight: bold;">🏠 Home Categorie</a>
+<div style="font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px;">
+  <header style="border-bottom: 2px solid #eaeef2; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="margin: 0; font-size: 24px; color: #24292f; cursor: pointer;" routerLink="/">
+      📚 Biblioteca - Gestione Catalogo
+    </h1>
+    <span style="color: #57606a; font-weight: 500;">Progetto Livello Medio</span>
   </header>
 
-  <router-outlet></router-outlet>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>
