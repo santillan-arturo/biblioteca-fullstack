@@ -8,8 +8,8 @@ import { Libro } from './models/libro.model';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: 'app.html', // <-- NOTA: Senza './' davanti, solo 'app.html'
-  styleUrl: 'app.css'      // <-- In modo che legga direttamente il file nella stessa cartella
+  templateUrl: './app.html',
+  styleUrls: ['./app.css']
 })
 export class AppComponent {
   title = 'Gestione Biblioteca - Inserimento';

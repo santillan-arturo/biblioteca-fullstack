@@ -8,8 +8,7 @@ import { Libro } from '../models/libro.model';
 })
 export class LibroService {
   // L'indirizzo del nostro server Flask (quello attivo sulla porta 5000)
-  private apiUrl = 'http://127.0.0.1:5000/api/libri';
-
+      private apiUrl = 'https://turbo-sniffle-pjp44qw7qjwjh6v6r-5000.app.github.dev/api/libri';
   constructor(private http: HttpClient) { }
 
   // Metodo per inviare il nuovo libro al database (Compito Studente A)
