@@ -4,6 +4,7 @@ import mysql.connector
 from mysql.connector import Error
 
 app = Flask(__name__)
+CORS(app)
 
 # Configurazione CORS super aperta per evitare qualsiasi blocco con GitHub Codespaces
 CORS(app, resources={r"/*": {"origins": "*"}})
