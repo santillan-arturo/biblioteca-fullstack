@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2>📚 Elenco Libri in Biblioteca</h2>
+  
+  <table class="table table-striped table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Titolo</th>
+        <th>Anno</th>
+        <th>ISBN</th>
+        <th>Genere</th>
+        <th>Edizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of libri">
+        <td>{{ libro.titolo }}</td>
+        <td>{{ libro.anno_pubblicazione }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td><span class="badge bg-primary">{{ libro.genere }}</span></td>
+        <td>{{ libro.edizione }}</td>
+      </tr>
+      
+      <tr *ngIf="libri.length === 0">
+        <td colspan="5" class="text-center text-muted">Nessun libro presente nel database.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
