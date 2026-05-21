@@ -10,7 +10,7 @@
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
             <h3 class="card-title fw-bold text-primary mb-3">{{ cat.nome }}</h3>
-            <p class="card-text text-muted small">Esplora tutti i volumi registrati in questa sezione.</p>
+            <p class="card-text text-muted small">{{ cat.descrizione || 'Esplora tutti i volumi registrati in questa sezione.' }}</p>
           </div>
           <button (click)="selezionaCategoria(cat.id)" class="btn btn-primary w-100 py-2 mt-4 fw-bold text-uppercase">
             Vedi Libri
