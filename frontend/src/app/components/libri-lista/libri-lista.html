@@ -1,46 +1,49 @@
-<div>
-  <div style="margin-bottom: 20px;">
-    <a routerLink="/" style="color: #007bff; text-decoration: none;">&larr; Torna alle Categorie</a>
+<div class="container py-5">
+  <div class="mb-4">
+    <a routerLink="/categorie" class="text-decoration-none text-primary fw-bold">
+      &larr; Torna alle Categorie
+    </a>
   </div>
 
-  <h2>Elenco Libri</h2>
-
-  <div style="margin-bottom: 20px;">
-    <input type="text" 
-           [(ngModel)]="searchQuery" 
-           (input)="onSearchChange()" 
-           placeholder="🔍 Cerca un libro per titolo..." 
-           style="padding: 10px; width: 100%; max-width: 400px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;" />
+  <div class="mb-5">
+    <h1 class="display-5 fw-bold text-dark mb-3">Elenco Libri</h1>
+    
+    <div class="row max-width-search mb-4">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">🔍</span>
+          <input type="text" class="form-control border-start-0" placeholder="Cerca un libro per titolo...">
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div *ngIf="loading" style="color: #666; font-style: italic;">
+  <div *ngIf="caricamento" class="text-muted italic my-4">
     Caricamento libri in corso...
   </div>
 
-  <div *ngIf="!loading && libriList.length === 0" style="padding: 20px; background-color: #fafafa; border: 1px solid #e1e4e6; text-align: center; color: #666;">
-    Nessun libro trovato per questa categoria o ricerca.
+  <div *ngIf="!caricamento" class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-hover align-middle border mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="py-3 px-4">Titolo</th>
+          <th scope="col" class="py-3 px-4">Autore</th>
+          <th scope="col" class="py-3 px-4">Anno Pubblicazione</th>
+          <th scope="col" class="py-3 px-4 text-center" style="width: 120px;">Dettagli</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let libro of libri">
+          <td class="py-3 px-4 fw-semibold text-dark">{{ libro.titolo }}</td>
+          <td class="py-3 px-4 text-secondary">{{ libro.autore }}</td>
+          <td class="py-3 px-4 text-secondary">{{ libro.anno }}</td>
+          <td class="py-3 px-4 text-center">
+            <a [routerLink]="['/libro', libro.id]" class="btn btn-primary btn-sm px-4 fw-bold text-uppercase">
+              Vedi
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <table *ngIf="!loading && libriList.length > 0" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-    <thead>
-      <tr style="background-color: #f6f8fa; border-bottom: 2px solid #d0d7de; text-align: left;">
-        <th style="padding: 12px;">Titolo</th>
-        <th style="padding: 12px;">Autore</th>
-        <th style="padding: 12px;">Anno</th>
-        <th style="padding: 12px;">Azioni</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let libro of libriList" style="border-bottom: 1px solid #d0d7de;">
-        <td style="padding: 12px; font-weight: bold;">{{ libro.titolo }}</td>
-        <td style="padding: 12px;">{{ libro.autore }}</td>
-        <td style="padding: 12px;">{{ libro.anno_pubblicazione }}</td>
-        <td style="padding: 12px;">
-          <button [routerLink]="['/libro', libro.id]" style="padding: 6px 12px; background-color: #2ea44f; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
-            Vedi Dettaglio
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
