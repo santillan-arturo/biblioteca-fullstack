@@ -1,56 +1,59 @@
-<div style="max-width: 500px; margin: 40px auto; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
-  
-  <h2>📚 Studente A: Inserimento Nuovo Libro</h2>
-  <p style="color: #666;">Popolamento del database relazionale a 10 entità</p>
-  
-  <hr style="margin-bottom: 20px;">
+<div class="container mt-4">
+  <div class="p-4 mb-4 bg-light rounded-3 shadow-sm">
+    <h1 class="display-5 fw-bold text-primary">📚 Sistema Biblioteca</h1>
+    <p class="col-md-8 fs-4 text-muted">Area Inserimento Libri - Studente A</p>
+  </div>
 
-  <div *ngIf="messaggioSuccesso" style="padding: 10px; background-color: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 15px;">
+  <div *ngIf="messaggioSuccesso" class="alert alert-success shadow-sm" role="alert">
     {{ messaggioSuccesso }}
   </div>
-  
-  <div *ngIf="messaggioErrore" style="padding: 10px; background-color: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 15px;">
-    ❌ {{ messaggioErrore }}
+  <div *ngIf="messaggioErrore" class="alert alert-danger shadow-sm" role="alert">
+    {{ messaggioErrore }}
   </div>
 
-  <form (ngSubmit)="inviaForm()">
-    
-    <div style="margin-bottom: 15px;">
-      <label style="display: block; margin-bottom: 5px; font-weight: bold;">Titolo Libro *</label>
-      <input type="text" [(ngModel)]="nuovoLibro.titolo" name="titolo" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+  <div class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white fw-bold">
+      Inserisci Nuovo Libro
     </div>
+    <div class="card-body">
+      <form (ngSubmit)="inviaForm()">
+        
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Titolo del Libro:</label>
+          <input type="text" [(ngModel)]="nuovoLibro.titolo" name="titolo" class="form-control" placeholder="Es. Il Piccolo Principe" required>
+        </div>
 
-    <div style="margin-bottom: 15px;">
-      <label style="display: block; margin-bottom: 5px; font-weight: bold;">Codice ISBN *</label>
-      <input type="text" [(ngModel)]="nuovoLibro.isbn" name="isbn" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Anno di Pubblicazione:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.anno_pubblicazione" name="anno_pubblicazione" class="form-control" placeholder="Es. 1943">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Codice ISBN:</label>
+          <input type="text" [(ngModel)]="nuovoLibro.isbn" name="isbn" class="form-control" placeholder="Es. 9788845161070" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Genere:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.fk_genere" name="fk_genere" class="form-control" placeholder="Es. 1 per Narrativa" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Edizione:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.fk_edizione" name="fk_edizione" class="form-control" placeholder="Es. 3 per Bompiani" required>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+            🚀 Invia e Salva nel Database
+          </button>
+        </div>
+
+      </form>
     </div>
+  </div>
+</div>
 
-    <div style="margin-bottom: 15px;">
-      <label style="display: block; margin-bottom: 5px; font-weight: bold;">Anno Pubblicazione</label>
-      <input type="number" [(ngModel)]="nuovoLibro.anno_pubblicazione" name="anno_pubblicazione" style="width: 100%; padding: 8px; box-sizing: border-box;">
-    </div>
-
-    <div style="margin-bottom: 15px;">
-      <label style="display: block; margin-bottom: 5px; font-weight: bold;">Genere Letterario (ID FK)</label>
-      <select [(ngModel)]="nuovoLibro.fk_genere" name="fk_genere" style="width: 100%; padding: 8px; box-sizing: border-box;">
-        <option [ngValue]="undefined">-- Seleziona ID Genere --</option>
-        <option [ngValue]="1">1 - Fantasy (Default)</option>
-        <option [ngValue]="2">2 - Giallo (Default)</option>
-      </select>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-      <label style="display: block; margin-bottom: 5px; font-weight: bold;">Edizione / Casa Editrice (ID FK)</label>
-      <select [(ngModel)]="nuovoLibro.fk_edizione" name="fk_edizione" style="width: 100%; padding: 8px; box-sizing: border-box;">
-        <option [ngValue]="undefined">-- Seleziona ID Edizione --</option>
-        <option [ngValue]="1">1 - Mondadori (Default)</option>
-        <option [ngValue]="2">2 - Salani (Default)</option>
-      </select>
-    </div>
-
-<button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
-  🚀 Salva Libro nel DB Cloud
-</button>
-
-  </form>
+<div class="container mt-4 mb-5">
+  <router-outlet></router-outlet>
 </div>
