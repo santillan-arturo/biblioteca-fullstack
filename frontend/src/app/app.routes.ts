@@ -8,4 +8,10 @@ export const routes: Routes = [
   { path: 'categoria/:id', component: LibriLista },
   { path: 'libro/:id', component: LibroDettaglio },
   { path: '**', redirectTo: '' }
+
+import { ListaLibriComponent } from './lista-libri/lista-libri';
+
+export const routes: Routes = [
+  { path: 'lista', component: ListaLibriComponent }
+ 
 ];

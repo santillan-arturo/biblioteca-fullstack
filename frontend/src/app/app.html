@@ -9,4 +9,63 @@
   <main>
     <router-outlet></router-outlet>
   </main>
+
+<div class="container mt-4">
+  <div class="p-4 mb-4 bg-light rounded-3 shadow-sm">
+    <h1 class="display-5 fw-bold text-primary">📚 Sistema Biblioteca</h1>
+    <p class="col-md-8 fs-4 text-muted">Area Inserimento Libri - Studente A</p>
+  </div>
+
+  <div *ngIf="messaggioSuccesso" class="alert alert-success shadow-sm" role="alert">
+    {{ messaggioSuccesso }}
+  </div>
+  <div *ngIf="messaggioErrore" class="alert alert-danger shadow-sm" role="alert">
+    {{ messaggioErrore }}
+  </div>
+
+  <div class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white fw-bold">
+      Inserisci Nuovo Libro
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="inviaForm()">
+        
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Titolo del Libro:</label>
+          <input type="text" [(ngModel)]="nuovoLibro.titolo" name="titolo" class="form-control" placeholder="Es. Il Piccolo Principe" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Anno di Pubblicazione:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.anno_pubblicazione" name="anno_pubblicazione" class="form-control" placeholder="Es. 1943">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Codice ISBN:</label>
+          <input type="text" [(ngModel)]="nuovoLibro.isbn" name="isbn" class="form-control" placeholder="Es. 9788845161070" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Genere:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.fk_genere" name="fk_genere" class="form-control" placeholder="Es. 1 per Narrativa" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">ID Edizione:</label>
+          <input type="number" [(ngModel)]="nuovoLibro.fk_edizione" name="fk_edizione" class="form-control" placeholder="Es. 3 per Bompiani" required>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary btn-lg fw-bold shadow-sm">
+            🚀 Invia e Salva nel Database
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 mb-5">
+  <router-outlet></router-outlet>
 </div>
