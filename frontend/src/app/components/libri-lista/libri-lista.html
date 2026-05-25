@@ -1,0 +1,49 @@
+<div class="container py-5">
+  <div class="mb-4">
+    <a routerLink="/categorie" class="text-decoration-none text-primary fw-bold">
+      &larr; Torna alle Categorie
+    </a>
+  </div>
+
+  <div class="mb-5">
+    <h1 class="display-5 fw-bold text-dark mb-3">Elenco Libri</h1>
+    
+    <div class="row max-width-search mb-4">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">🔍</span>
+          <input type="text" class="form-control border-start-0" placeholder="Cerca un libro per titolo...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="caricamento" class="text-muted italic my-4">
+    Caricamento libri in corso...
+  </div>
+
+  <div *ngIf="!caricamento" class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-hover align-middle border mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="py-3 px-4">Titolo</th>
+          <th scope="col" class="py-3 px-4">Autore</th>
+          <th scope="col" class="py-3 px-4">Anno Pubblicazione</th>
+          <th scope="col" class="py-3 px-4 text-center" style="width: 120px;">Dettagli</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let libro of libri">
+          <td class="py-3 px-4 fw-semibold text-dark">{{ libro.titolo }}</td>
+          <td class="py-3 px-4 text-secondary">{{ libro.autore }}</td>
+          <td class="py-3 px-4 text-secondary">{{ libro.anno }}</td>
+          <td class="py-3 px-4 text-center">
+            <a [routerLink]="['/libro', libro.id]" class="btn btn-primary btn-sm px-4 fw-bold text-uppercase">
+              Vedi
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router'; // <-- Aggiunto RouterModule
+
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';     
 import { RouterOutlet } from '@angular/router';   
@@ -8,6 +10,13 @@ import { Libro } from './models/libro.model';
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [RouterOutlet, RouterModule], // <-- Inserito anche qui
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class AppComponent {
+  title = 'frontend';
+
   imports: [CommonModule, FormsModule, RouterOutlet], 
   templateUrl: './app.html',
   styleUrls: ['./app.css']
